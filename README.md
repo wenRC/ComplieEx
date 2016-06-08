@@ -44,3 +44,5 @@
 ##YuCeFenXi.java:
 
   预测分析法是自己先写出问法，然后把分析表画好再查表完成的。文法有挺多局限性，毕竟很多地方都不会写出问法（也有怕麻烦的原因），而且最重点的是先写出来哈。
+  ###预测分析表:
+  ![](https://github.com/wenRC/ComplieEx/raw/master/yucefenxi map.jpg)
