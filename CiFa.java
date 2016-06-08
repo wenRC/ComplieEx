@@ -5,10 +5,10 @@ import java.util.ArrayList;
  * Created by 温 睿诚 on 2016/5/11/0011.
  */
 public class CiFa {
-    String[] keyword = {"if", "int", "for", "main", "return"};
+    String[] keyword = {"if", "int"};
     ArrayList<String> biaoshi = new ArrayList<>();
     ArrayList<Integer> changshu = new ArrayList<>();
-    String[] yunsuan = {"+", "="};
+    String[] yunsuan = {"+", "=", "-", ">", "==", "!="};
     String[] spilt = {",", "(", ")", "{", "}", ";"};
     //记录结果的符号表
     //用什么数据结构呢？
@@ -54,16 +54,33 @@ public class CiFa {
 
         getChar();
         int result;
+
+        //使用预测分析法
+        YuFa yuFa = new YuCeFenXi();
+        boolean flag = true;
         while (!(now < 0 || now >= 65535)) {
             //根据返回数值查找或插入，错误则打印并提示。正确则记录到map
             result = read();
             if (result != 6) {
                 System.out.println("(" + result + " , \"" + str + "\")");
+
+                if (!yuFa.fenxi(result, str.toString())) {
+                    flag = false;
+                    System.err.println("语法分析出错！出错单词: " + str.toString());
+
+                }
+
             } else {
                 System.err.println("(" + errorMsg + " , \"" + str + "\")");
             }
             str.delete(0, str.length());
         }
+        //结束
+        boolean tempResult = false;
+        if (yuFa != null)
+            tempResult = yuFa.fenxi(6, "#");
+        if (tempResult && flag)
+            System.out.println("语法分析通过！");
 
 
     }
